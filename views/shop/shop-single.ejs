@@ -1,0 +1,50 @@
+<h1><%= product.name %> Page</h1>
+
+<div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
+
+    <img src="<%= product.picture %>" alt="">
+
+    <h4><%= product.name %></h4>
+    <h4><%= product.category %></h4>
+    <h4><%= product.categoryDesc %></h4>
+    <h4><%= product.size %></h4>
+    <h4><%= product.userId %></h4>
+    <h4><%= product.color %></h4>
+    <h4><%= product.description %></h4>
+    <h4><%= product.price %></h4>
+    <h4><%= product.forSale %></h4>
+    <h4><%= product.gender %></h4>
+
+</div>
+
+
+<!-- Reviews -->
+<h1>Reviews Div</h1>
+<div class="reviews-containers"  style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
+
+    <!-- Loop over reviews -->
+    <% product.reviews.forEach(review => { %>
+
+        <div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
+
+
+
+            <h4><%= review.title %> </h4>
+            <h4><%= review.content %> </h4>
+            <h4><%= review.stars %> </h4>
+            <h4><%= review.user.firstName %> </h4>
+            <h4><%= review.user.lastName %> </h4>
+            <h4><%= review.user.mobile %> </h4>
+
+
+
+
+
+
+        
+        </div>
+    <% }) %>
+
+
+
+</div>

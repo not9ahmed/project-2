@@ -15,9 +15,6 @@ module.exports = {
       content: {
         type: Sequelize.TEXT
       },
-      categoryDesc: {
-        type: Sequelize.STRING
-      },
       stars: {
         type: Sequelize.ENUM('0', '1', '2', '3', '4', '5')
       },
@@ -26,9 +23,6 @@ module.exports = {
       },
       productId: {
         type: Sequelize.INTEGER
-      },
-      description :{
-        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
