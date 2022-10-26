@@ -1,0 +1,29 @@
+<h1>
+    Users Management Page
+</h1>
+
+<% users.forEach(user => { %>
+ 
+    <h2>
+
+        <%= user.username %> 
+
+        <form method="POST" action="/admin/delete-user/?_method=DELETE">
+            <input type="hidden" name="userId" value="<%= user.id %> ">
+            <input type="submit" value="Delete User">
+        </form>
+    </h2>
+
+    <h3> products:</h3>
+
+    <% user.products.forEach(product => { %>
+        <p>
+            <%= product.name %> 
+        
+
+        </p>
+    <% }) %>
+<% }) %>
+
+<!-- Add form to delere the user or overall see their total -->
+<!-- number of products -->

@@ -22,6 +22,9 @@
 <h1>Reviews Div</h1>
 <div class="reviews-containers"  style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
 
+    <!-- check if there are reviews -->
+    <% if (product.reviews){ %> 
+
     <!-- Loop over reviews -->
     <% product.reviews.forEach(review => { %>
 
@@ -29,12 +32,15 @@
 
 
 
-            <h4><%= review.title %> </h4>
-            <h4><%= review.content %> </h4>
-            <h4><%= review.stars %> </h4>
-            <h4><%= review.user.firstName %> </h4>
-            <h4><%= review.user.lastName %> </h4>
-            <h4><%= review.user.mobile %> </h4>
+            <h4><%= review.title %></h4>
+            <h4><%= review.user.username %></h4>
+
+            <h4><%= review.content %></h4>
+
+            <!-- Add some loop for the stars -->
+            <h4><%= review.stars %> Stars</h4>
+
+
 
 
 
@@ -45,6 +51,60 @@
         </div>
     <% }) %>
 
+    <% } %> 
+
+    <div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
+        
+        <h1>Add a new Review</h1>
+
+
+        <form action="/shop/add-review" method="POST">
+            
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title">
+            <br>
+            <br>
+
+            <label for="title">Content:</label>
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            <br>
+            <br>
+
+            <label for="">0 Stars</label>
+            <input type="radio" name="stars" id="0stars" value="0">
+            <br>
+
+            <label for="">1 Stars</label>
+            <input type="radio" name="stars" id="1stars" value="1">
+            <br>
+
+            <label for="">2 Stars</label>
+            <input type="radio" name="stars" id="2stars" value="2">
+            <br>
+
+            <label for="">3 Stars</label>
+            <input type="radio" name="stars" id="3stars" value="3">
+            <br>
+
+            <label for="">4 Stars</label>
+            <input type="radio" name="stars" id="4stars" value="4">
+            <br>
+
+            <label for="">5 Stars</label>
+            <input type="radio" name="stars" id="5stars" value="5">
+
+
+            <input type="hidden" name="userId" value="<%= user.id %> ">
+
+            <input type="hidden" name="productId" value="<%= product.id %> ">
+
+
+
+            <br>
+            <br>
+            <input type="submit" value="Add Review">
+        </form>
+    </div>
 
 
 </div>

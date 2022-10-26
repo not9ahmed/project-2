@@ -5,17 +5,6 @@ const createUsers = async () => {
 
     try {
 
-        /*
-            username: DataTypes.STRING,
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    mobile: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    profilePicture: DataTypes.STRING
-        */
-
-
         const user1 = await db.user.create({
             username: "notahmed",
             firstName: "Ahmed",
@@ -23,8 +12,8 @@ const createUsers = async () => {
             mobile: "33445566",
             email: "ahmed@gmail.com",
             password: "$2b$10$eG7esMUSjh6Oh7eM5TO0uOdYZ1NzQnZmkTeVanK1d17jO/xnUE02e",
-            profilePicture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZQ2zuxYet0UwWj2JAn3WmhGDQdnBaQjxoyA&usqp=CAU"
-            ,isAdmin: true
+            profilePicture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZQ2zuxYet0UwWj2JAn3WmhGDQdnBaQjxoyA&usqp=CAU",
+            isAdmin: true
         })
 
         console.log(user1)
@@ -36,11 +25,25 @@ const createUsers = async () => {
             mobile: "33112233",
             email: "ann@gmail.com",
             password: "$2b$10$M9/Vh.mf6yWkLqNFF45IyOicVs2qnHLEdu6HLvG4/zG4uaEW5fpQW",
-            profilePicture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_zLXElT1i_xOqPmzfiC1PfFduQvIDgnM1w&usqp=CAU"
-            ,isAdmin: true
+            profilePicture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu_zLXElT1i_xOqPmzfiC1PfFduQvIDgnM1w&usqp=CAU",
+            isAdmin: true
         })
 
         console.log(user2)
+
+
+        const user3 = await db.user.create({
+            username: "AM",
+            firstName: "Alex",
+            lastName: "Turner",
+            mobile: "33221100",
+            email: "AM@gmail.com",
+            password: "$2b$10$M9/Vh.mf6yWkLqNFF45IyOicVs2qnHLEdu6HLvG4/zG4uaEW5fpQW",
+            profilePicture: "https://images.anothermanmag.com/1000/azure/anotherman-prod/360/6/366567.jpg",
+            isAdmin: false
+        })
+
+        console.log(user3)
 
     } catch (err){
         console.log(err)
@@ -91,7 +94,7 @@ const createProducts = async () => {
     }
 }
 
-createProducts()
+// createProducts()
 
 
 
@@ -133,4 +136,4 @@ const createReviews = async () => {
     }
 }
 
-createReviews()
+// createReviews()

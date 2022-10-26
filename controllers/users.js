@@ -56,4 +56,49 @@ router.get('/profile', (req, res)=>{
     res.render('users/profile.ejs')
 })
 
+router.get('/my-stuff', async (req, res)=>{
+    let context = {}
+
+    let userId = res.locals.user.dataValues.id
+
+    const products = await db.product.findAll({
+        where: {
+            userId: userId
+        }
+    })
+
+    context.products = products
+
+    res.render('users/my-stuff.ejs', context)
+})
+
+
+router.get('/my-stuff/:productId', async (req, res)=>{
+    let context = {}
+
+    let userId = res.locals.user.dataValues.id
+
+    let productId = req.params.productId
+
+    console.log(productId)
+
+    const product = await db.product.findOne({
+        where: {
+            id: productId,
+            userId: userId
+        },
+        // include: [db.review]
+
+        // nested join
+        include: [{
+            model: db.review,
+            include: [db.user]
+        }]
+    })
+
+    context.product = product
+
+    res.render('users/single-stuff.ejs', context)
+})
+
 module.exports = router

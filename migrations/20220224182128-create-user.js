@@ -29,6 +29,9 @@ module.exports = {
       profilePicture: {
         type: Sequelize.STRING
       },
+      isAdmin: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
