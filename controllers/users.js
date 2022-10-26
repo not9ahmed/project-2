@@ -59,7 +59,7 @@ router.get('/profile', (req, res)=>{
 router.get('/my-stuff', async (req, res)=>{
     let context = {}
 
-    let userId = res.locals.user.dataValues.id
+    let userId = parseInt(res.locals.user.dataValues.id)
 
     const products = await db.product.findAll({
         where: {
@@ -76,9 +76,9 @@ router.get('/my-stuff', async (req, res)=>{
 router.get('/my-stuff/:productId', async (req, res)=>{
     let context = {}
 
-    let userId = res.locals.user.dataValues.id
+    let userId = parseInt(res.locals.user.dataValues.id)
 
-    let productId = req.params.productId
+    let productId = parseInt(req.params.productId)
 
     console.log(productId)
 
@@ -96,9 +96,58 @@ router.get('/my-stuff/:productId', async (req, res)=>{
         }]
     })
 
+    const genders = db.product.getAttributes().gender.values
+    const categories = db.product.getAttributes().category.values
+
+    console.log(genders)
+    console.log(categories)
+
+
+
     context.product = product
+    context.genders = genders
+    context.categories = categories
+
 
     res.render('users/single-stuff.ejs', context)
+})
+
+
+router.put('/my-stuff/:id', async (req, res) => {
+
+        
+    let productId = parseInt(req.params.id)
+
+
+    console.log(req.body)
+
+    const product = await db.product.update({
+        name: req.body.name,
+        category: req.body.category,
+        categoryDesc: req.body.categoryDesc,
+        size: req.body.size,
+        color: req.body.color,
+        description: req.body.description,
+        price: req.body.price,
+        forSale: JSON.parse(req.body.forSale),
+        gender:  req.body.gender
+    
+    
+        // update the pictures
+        // picture: DataTypes.ARRAY(DataTypes.STRING)
+    }, {
+        where: {
+            id: productId
+        }
+    })
+
+    // console.log(product)
+
+    res.redirect('/users/my-stuff')
+
+
+
+
 })
 
 module.exports = router

@@ -8,21 +8,116 @@
 <div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
 
 
-    <!-- <form action="" method="post"></form> -->
+    <form action="/users/my-stuff/<%= product.id %>/?_method=PUT" method="POST">
 
-    <img src="<%= product.picture %>" alt="">
 
-    <h4><%= product.name %></h4>
-    <h4><%= product.category %></h4>
-    <h4><%= product.categoryDesc %></h4>
-    <h4><%= product.size %></h4>
-    <h4><%= product.userId %></h4>
-    <h4><%= product.color %></h4>
-    <h4><%= product.description %></h4>
-    <h4><%= product.price %></h4>
-    <h4><%= product.forSale %></h4>
-    <h4><%= product.gender %></h4>
+    <% product.picture.forEach(pic => { %>
 
+        <!-- will be a loop of pictures -->
+        <!-- <div style="object-fit: cover; width: 200px; height: 250px; margin: 0 auto;"> -->
+
+        <img style="width: 200px;" src="<%= pic %>" alt="">
+        <!-- </div> -->
+     
+    <% }) %>
+    
+    <!-- <h4><%= //product.picture %></h4> -->
+
+
+    <br>
+
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" value="<%= product.name %>">
+    <br>
+
+
+    <label for="category"></label>
+
+    <select name="category" id="category">
+    <% categories.forEach(category => { %>
+     
+        <% if (category === product.category) { %>
+         
+            <option name="<%= category %>" value="<%= category %>" selected><%= category %></option>
+        <% } else { %>
+
+            <option  name="<%= category %>" value="<%= category %>"><%= category %></option>
+         <% } %> 
+
+    <% }) %>
+    </select>
+    <br>
+
+    <label for="categoryDesc"></label>
+    <input type="text" id="categoryDesc" name="categoryDesc" value="<%= product.categoryDesc %>">
+    <br>
+
+    <label for="size"></label>
+    <input type="text" id="size" name="size" value="<%= product.size %>">
+    <br>
+
+    
+    <label for="color"></label>
+    <input type="text" id="color" name="color" value="<%= product.color %>">
+    <br>
+
+
+    <label for="description"></label>
+    <input type="text" id="description" name="description" value="<%= product.description %>">
+    <br>
+
+
+    <label for="price"></label>
+    <input type="number" id="price" name="price" value="<%= product.price %>">
+    <br>
+
+
+    <p>Is Product on Sale?</p>
+    <!-- Check if product is on sale -->
+    <label for="yes">Yes</label>
+    <% if (product.forSale === true) { %>
+        <input type="radio" name="forSale" id="yes" value="true" checked>
+    <% } else { %>
+        <input type="radio" name="forSale" id="yes" value="true">
+    <% }%>
+
+
+    <label for="no">No</label>
+    <% if (product.forSale === false) { %>
+        <input type="radio" name="forSale" id="no" value="false" checked>
+
+    <% } else { %>
+        <input type="radio" name="forSale" id="no" value="false">
+    <% }%>
+
+
+    <br>
+
+    <p>Gender:</p>
+    <!-- Check the product gender -->
+    <label for="male">Male</label> 
+    <% if (product.gender === 'male') { %>
+        <input type="radio" name="gender" id="male" value="male" checked>
+
+    <% } else { %>
+        <input type="radio" name="gender" id="male" value="male">
+    <% }%>
+
+
+    <label for="female">Female</label>
+    <% if (product.gender === 'female') { %>
+        <input type="radio" name="gender" id="female" value="female" checked>
+
+    <% } else { %>
+        <input type="radio" name="gender" id="female" value="female">
+    <% }%>
+
+    <br>
+    <br>
+
+    <input type="submit" value="Update Product">
+
+    </form>
 </div>
 
 
@@ -44,12 +139,6 @@
 
             <!-- Add some loop for the stars -->
             <h4><%= review.stars %> Stars</h4>
-
-
-
-
-
-
 
 
         
