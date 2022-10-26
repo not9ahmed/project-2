@@ -26,12 +26,12 @@
 
     <br>
 
-    <label for="name">Name</label>
+    <label for="name">Name:</label>
     <input type="text" name="name" id="name" value="<%= product.name %>">
     <br>
 
 
-    <label for="category"></label>
+    <label for="category">Category:</label>
 
     <select name="category" id="category">
     <% categories.forEach(category => { %>
@@ -48,26 +48,26 @@
     </select>
     <br>
 
-    <label for="categoryDesc"></label>
+    <label for="categoryDesc">Categories Description:</label>
     <input type="text" id="categoryDesc" name="categoryDesc" value="<%= product.categoryDesc %>">
     <br>
 
-    <label for="size"></label>
+    <label for="size">Size:</label>
     <input type="text" id="size" name="size" value="<%= product.size %>">
     <br>
 
     
-    <label for="color"></label>
+    <label for="color">Color:</label>
     <input type="text" id="color" name="color" value="<%= product.color %>">
     <br>
 
 
-    <label for="description"></label>
+    <label for="description">Description:</label>
     <input type="text" id="description" name="description" value="<%= product.description %>">
     <br>
 
 
-    <label for="price"></label>
+    <label for="price">Price:</label>
     <input type="number" id="price" name="price" value="<%= product.price %>">
     <br>
 
@@ -131,11 +131,13 @@
         <div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
 
 
+            <p>Review Date: <%= review.createdAt.getFullYear()+'/'+(review.createdAt.getMonth()+1)+'/'+review.createdAt.getDate();  %> </p>
 
-            <h4><%= review.title %></h4>
-            <h4><%= review.user.username %></h4>
+            <h4>Review Title: <%= review.title %></h4>
+            <h4>Username:<%= review.user.username %></h4>
 
-            <h4><%= review.content %></h4>
+            <h4>Content:</h4>
+            <p><%= review.content %></p>
 
             <!-- Add some loop for the stars -->
             <h4><%= review.stars %> Stars</h4>
