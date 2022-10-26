@@ -1,0 +1,81 @@
+<h1>
+    Add Product Page
+</h1>
+
+<div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
+
+    <form action="/shop/add-product" method="POST">
+
+
+        <br>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="">
+        <br>
+    
+    
+        <label for="category">Category:</label>
+    
+        <select name="category" id="category">
+        <% categories.forEach(category => { %>
+                          
+            <option  name="<%= category %>" value="<%= category %>"><%= category %></option>
+  
+        <% }) %>
+        </select>
+        <br>
+    
+        <label for="categoryDesc">Categories Description:</label>
+        <input type="text" id="categoryDesc" name="categoryDesc" value="">
+        <br>
+    
+        <label for="size">Size:</label>
+        <input type="text" id="size" name="size" value="">
+        <br>
+    
+        
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" value="">
+        <br>
+    
+    
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <br>
+    
+    
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="">
+        <br>
+    
+    
+        <p>Is Product on Sale?</p>
+        <!-- Check if product is on sale -->
+        <label for="yes">Yes</label>
+        <input type="radio" name="forSale" id="yes" value="true">
+    
+        <label for="no">No</label>
+        <input type="radio" name="forSale" id="no" value="false">
+
+    
+    
+        <br>
+    
+        <p>Gender:</p>
+        <label for="male">Male</label> 
+        <input type="radio" name="gender" id="male" value="male" checked>
+
+    
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value="female" >
+
+    
+        <br>
+        <br>
+    
+        <input type="submit" value="Add Product">
+    
+
+    </form>
+
+</div>

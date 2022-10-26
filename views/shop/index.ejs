@@ -17,7 +17,7 @@
 
             <a href="/shop/<%= product.id %> ">
 
-                <img src="<%= product.picture %>" style="width: 200px;" alt="">
+                <img src="<%= product.picture[0] %>" style="width: 200px;" alt="">
             </a>
         </div>
 
@@ -28,7 +28,7 @@
         <!-- <h4><%=// product.userId %> </h4> -->
         <!-- <h4><%=// product.color %> </h4> -->
         <!-- <h4><%= //product.description %> </h4> -->
-        <h4><%= product.price %> </h4>
+        <h4>$<%= product.price %></h4>
         <!-- <h4><%= //product.forSale %> </h4>
         <h4><%= //product.gender %> </h4> -->
 
