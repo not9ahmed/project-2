@@ -2,7 +2,15 @@
 
 <div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
 
-    <img src="<%= product.picture %>" alt="">
+    <% product.picture.forEach(pic => { %>
+
+        <!-- will be a loop of pictures -->
+        <!-- <div style="object-fit: cover; width: 200px; height: 250px; margin: 0 auto;"> -->
+
+        <img style="width: 200px;" src="<%= pic %>" alt="">
+        <!-- </div> -->
+     
+    <% }) %>
 
     <h4><%= product.name %></h4>
     <h4><%= product.category %></h4>
@@ -94,7 +102,7 @@
             <input type="radio" name="stars" id="5stars" value="5">
 
 
-            <input type="hidden" name="userId" value="<%= user.id %> ">
+            <!-- <input type="hidden" name="userId" value="<%= user.id %> "> -->
 
             <input type="hidden" name="productId" value="<%= product.id %> ">
 

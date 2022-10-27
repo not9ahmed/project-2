@@ -4,7 +4,7 @@
 
 <div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
 
-    <form action="/shop/add-product" method="POST">
+    <form action="/shop/add-product" id="addForm" method="POST">
 
 
         <br>
@@ -73,9 +73,92 @@
         <br>
         <br>
     
+
+        <div id="productImages">  
+    
+            <label for="picture-0">Picture 1</label>
+            <input type="text" name="picture[]" id="picture-0" size="150">
+            <br>
+                 
+        </div>
+
+        <input type="button" value="Add New Picture" id="addPictureBtn">
+
+
         <input type="submit" value="Add Product">
     
 
     </form>
 
 </div>
+
+
+<script>
+
+    const addPictureBtn = document.getElementById('addPictureBtn')
+    const productImages = document.getElementById('productImages')
+    
+
+
+    let picturesLength = 1
+    
+    
+    const addNewProduct = () => {
+    
+    
+
+        const form = document.getElementById("addForm")
+    
+        const newPictureField = document.createElement('INPUT')
+        
+    
+    
+    
+        newPictureField.setAttribute('type', 'text')
+        newPictureField.setAttribute('id', `picture-${picturesLength}`)
+        newPictureField.setAttribute('size', '150')
+        newPictureField.setAttribute('name', 'picture[]')
+    
+    
+    
+        console.log(newPictureField)
+    
+    
+        form.appendChild(newPictureField)
+    
+    
+        const label = document.createElement('LABEL')
+    
+        const labelText = document.createTextNode(`Picture ${picturesLength + 1}`)
+    
+        label.setAttribute("for", `picture-${picturesLength}`)
+    
+    
+        console.log(label)
+    
+    
+        label.appendChild(labelText)
+    
+    
+    
+        // attach label with the
+    
+        const br = document.createElement('br')
+    
+    
+        // append the image inside the pictureDiv
+    
+        
+        productImages.appendChild(newPictureField)
+        productImages.insertBefore(label,newPictureField);
+        productImages.appendChild(br)
+    
+    
+        // increase the length
+        picturesLength++
+    }
+    
+        addPictureBtn.addEventListener('click', addNewProduct)
+    
+    
+    </script>

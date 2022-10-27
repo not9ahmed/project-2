@@ -59,7 +59,7 @@ router.get('/profile', (req, res)=>{
 router.get('/my-stuff', async (req, res)=>{
     let context = {}
 
-    let userId = parseInt(res.locals.user.dataValues.id)
+    let userId = parseInt(res.locals.user.id)
 
     const products = await db.product.findAll({
         where: {
@@ -76,7 +76,7 @@ router.get('/my-stuff', async (req, res)=>{
 router.get('/my-stuff/:productId', async (req, res)=>{
     let context = {}
 
-    let userId = parseInt(res.locals.user.dataValues.id)
+    let userId = parseInt(res.locals.user.id)
 
     let productId = parseInt(req.params.productId)
 
@@ -99,9 +99,10 @@ router.get('/my-stuff/:productId', async (req, res)=>{
     const genders = db.product.getAttributes().gender.values
     const categories = db.product.getAttributes().category.values
 
-    console.log(genders)
-    console.log(categories)
+    // console.log(genders)
+    // console.log(categories)
 
+    console.log(product.picture)
 
 
     context.product = product
@@ -113,13 +114,26 @@ router.get('/my-stuff/:productId', async (req, res)=>{
 })
 
 
-router.put('/my-stuff/:id', async (req, res) => {
+// update the userid
+router.put('/my-stuff/update/:id', async (req, res) => {
 
         
     let productId = parseInt(req.params.id)
 
 
-    console.log(req.body)
+    // console.log(req.body)
+    // console.log(req.body['picture[]'])
+
+    let picturesArray = req.body['picture[]']
+
+    console.log(picturesArray)
+
+    const filteredArrays = picturesArray.filter(element => {
+        return element !== ''
+    })
+
+    console.log(filteredArrays)
+
 
     const product = await db.product.update({
         name: req.body.name,
@@ -134,7 +148,7 @@ router.put('/my-stuff/:id', async (req, res) => {
     
     
         // update the pictures
-        // picture: DataTypes.ARRAY(DataTypes.STRING)
+        ,picture: filteredArrays
     }, {
         where: {
             id: productId
@@ -143,11 +157,29 @@ router.put('/my-stuff/:id', async (req, res) => {
 
     // console.log(product)
 
-    res.redirect('/users/my-stuff')
+    res.redirect(`/users/my-stuff/${productId}`)
 
 
 
 
+})
+
+
+//router to delete my stuff
+router.delete('/my-stuff/delete/:id', async (req, res) => {
+
+
+    let productId = req.params.id
+
+
+    const user = await db.product.destroy({
+        where: {
+            id: productId
+        }
+    })
+
+
+    res.redirect(`/users/my-stuff/`)
 })
 
 module.exports = router

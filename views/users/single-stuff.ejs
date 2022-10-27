@@ -8,7 +8,7 @@
 <div style="text-align: center; display: block; margin: 10px; border: 5px solid red;">
 
 
-    <form action="/users/my-stuff/<%= product.id %>/?_method=PUT" method="POST">
+    <form action="/users/my-stuff/update/<%= product.id %>/?_method=PUT" method="POST" id="updateForm">
 
 
     <% product.picture.forEach(pic => { %>
@@ -115,9 +115,34 @@
     <br>
     <br>
 
+
+    <div id="productImages">
+
+
+        <% product.picture.forEach((element,idx) => { %>
+         
+    
+            <label for="picture-<%= idx %>">Picture <%= idx+1 %></label>
+            <input type="text" name="picture[]" value="<%= element %>" id="picture-<%= idx %>" size="150">
+            <br>
+             
+        <% }) %>
+    </div>
+
+
+
+    <input type="button" value="Add New Picture" id="addPictureBtn">
+
+    <br>
     <input type="submit" value="Update Product">
 
     </form>
+
+
+    <form action="/users/my-stuff/delete/<%= product.id %>/?_method=DELETE" method="POST" id="deleteForm">
+        <input type="submit" value="Delete Product">
+    </form>
+
 </div>
 
 
@@ -150,3 +175,92 @@
 
 
 </div>
+
+
+
+<script>
+
+// const picturesDiv =  document.getElementById('pictures')
+const addPictureBtn = document.getElementById('addPictureBtn')
+const productImages = document.getElementById('productImages')
+
+
+// <label for="picture<%=// idx %>">Picture <%= //idx+1 %></label>
+// <input type="text" name="picture[]" value="<%= //element %>" id="picture-<%=// idx %>" size="150">
+// <br>
+
+const product =  '<%- product %>'
+
+let picturesLength  = parseInt('<%- product.picture.length %>')
+
+
+
+// var x = document.createElement("LABEL");
+//   var t = document.createTextNode("Male");
+//   x.setAttribute("for", "male");
+//   x.appendChild(t);
+//   document.getElementById("myForm").insertBefore(x,document.getElementById("male"));
+
+
+const addNewProduct = () => {
+
+
+    console.log(picturesLength)
+    // const lastPictureField = document.getElementById(`picture-${picturesLength}`)
+
+
+    const form = document.getElementById("updateForm")
+
+    const newPictureField = document.createElement('INPUT')
+    
+
+
+
+    newPictureField.setAttribute('type', 'text')
+    newPictureField.setAttribute('id', `picture-${picturesLength}`)
+    newPictureField.setAttribute('size', '150')
+    newPictureField.setAttribute('name', 'picture[]')
+
+
+
+    console.log(newPictureField)
+
+
+    form.appendChild(newPictureField)
+
+
+    const label = document.createElement('LABEL')
+
+    const labelText = document.createTextNode(`Picture ${picturesLength + 1}`)
+
+    label.setAttribute("for", `picture-${picturesLength}`)
+
+
+    console.log(label)
+
+
+    label.appendChild(labelText)
+
+
+
+    // attach label with the
+
+    const br = document.createElement('br')
+
+
+    // append the image inside the pictureDiv
+
+    
+    productImages.appendChild(newPictureField)
+    productImages.insertBefore(label,newPictureField);
+    productImages.appendChild(br)
+
+
+    // increase the length
+    picturesLength++
+}
+
+    addPictureBtn.addEventListener('click', addNewProduct)
+
+
+</script>

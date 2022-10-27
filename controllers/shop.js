@@ -35,6 +35,8 @@ router.post('/add-review', async (req, res) => {
 
         let productId = parseInt(req.body.productId)
 
+        let userId = parseInt(res.locals.user.id)
+
 
         console.log(productId)
 
@@ -43,7 +45,7 @@ router.post('/add-review', async (req, res) => {
             title: req.body.title,
             content: req.body.content,
             stars: req.body.stars,
-            userId: parseInt(req.body.userId),
+            userId: userId,
             productId: productId
         })
 
@@ -66,7 +68,7 @@ router.get('/add-product', async (req, res) => {
 
     let context = {}
 
-    const categories = db.product.getAttributes().category.values
+    const categories = await db.product.getAttributes().category.values
 
 
     context.categories = categories
@@ -82,9 +84,20 @@ router.post('/add-product', async (req, res) => {
 
     console.log(req.body)
 
+    let userId = parseInt(res.locals.user.id)
 
-    let userId = parseInt(res.locals.user.dataValues.id)
 
+    let picturesArray = req.body['picture[]']
+
+    console.log('picturesArray', picturesArray)
+
+    const filteredArrays = picturesArray.filter(element => {
+        return element !== ''
+    })
+
+    console.log('filteredArrays', filteredArrays)
+
+    
     const product = await db.product.create({
         name: req.body.name,
         category: req.body.category,
@@ -96,10 +109,10 @@ router.post('/add-product', async (req, res) => {
         forSale: JSON.parse(req.body.forSale),
         gender:  req.body.gender,
         userId: userId
-    
+
     
         // add the pictures
-        // picture: DataTypes.ARRAY(DataTypes.STRING)
+        ,picture: filteredArrays
     })
     res.redirect('/shop')
 

@@ -12,10 +12,18 @@
             <% if(user){ %>
                 <li><a href="/users/profile">Profile</a></li>
                 <li><a href="/users/logout">Logout</a></li>
+                <li><a href="/users/my-stuff">My Stuff</a></li>
+
+
+                <% if (user.isAdmin) { %>                 
+                    <li><a href="/admin/">Admin Page</a></li>
+                    <li><a href="/admin/users-management">Users Management Page</a></li>
+                <% } %>
             <% } else { %> 
                 <li><a href="/users/new">Sign Up</a></li>
                 <li><a href="/users/login">Login</a></li>
             <% } %>
+            <li><a href="/shop/">Shop Page</a></li>
         </ul>
     </nav>
     <h1>Express Auth Boilerplate for Project 2</h1>
