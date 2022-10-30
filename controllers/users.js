@@ -73,48 +73,98 @@ router.get('/my-stuff', async (req, res)=>{
 })
 
 
-router.get('/my-stuff/:productId', async (req, res)=>{
-    let context = {}
-
-    let userId = parseInt(res.locals.user.id)
-
-    let productId = parseInt(req.params.productId)
-
-    console.log(productId)
-
-    const product = await db.product.findOne({
-        where: {
-            id: productId,
-            userId: userId
-        },
-        // include: [db.review]
-
-        // nested join
-        include: [{
-            model: db.review,
-            include: [db.user]
-        }]
-    })
-
-    const genders = db.product.getAttributes().gender.values
-    const categories = db.product.getAttributes().category.values
-
-    // console.log(genders)
-    // console.log(categories)
-
-    console.log(product.picture)
 
 
-    context.product = product
-    context.genders = genders
-    context.categories = categories
+router.post('/add-review', async (req, res) => {
+
+    try{
+
+        let productId = parseInt(req.body.productId)
+
+        let userId = parseInt(res.locals.user.id)
 
 
-    res.render('users/single-stuff.ejs', context)
+        console.log(productId)
+
+        const review  = await db.review.create({
+
+            title: req.body.title,
+            content: req.body.content,
+            stars: req.body.stars,
+            userId: userId,
+            productId: productId
+        })
+
+        console.log(review)
+
+
+        // res.redirect('/')
+
+        res.redirect('/shop/'+productId)
+
+    } catch(err){
+        console.log(err)
+        res.send('ERROR!', err)
+    }
 })
 
 
-// update the userid
+// add new product
+router.get('/my-stuff/add-product', async (req, res) => {
+
+    let context = {}
+
+    const categories = await db.product.getAttributes().category.values
+
+
+    context.categories = categories
+
+
+    res.render('users/add-product', context)
+})
+
+
+// form to get the new product data get it from the update
+router.post('/my-stuff/add-product', async (req, res) => {
+
+
+    let userId = parseInt(res.locals.user.id)
+
+
+    let picturesArray = req.body['picture[]']
+
+    console.log('picturesArray', picturesArray)
+
+    const filteredArrays = picturesArray.filter(element => {
+        return element !== ''
+    })
+
+    console.log('filteredArrays', filteredArrays)
+
+
+    const product = await db.product.create({
+        name: req.body.name,
+        category: req.body.category,
+        categoryDesc: req.body.categoryDesc,
+        size: req.body.size,
+        color: req.body.color,
+        description: req.body.description,
+        price: parseFloat(req.body.price),
+        forSale: JSON.parse(req.body.forSale),
+        gender:  req.body.gender,
+        userId: userId,
+
+    
+        // add the pictures
+        picture: filteredArrays
+    })
+    res.redirect('/my-stuff')
+
+})
+
+
+
+// update the user stuff
 router.put('/my-stuff/update/:id', async (req, res) => {
 
         
@@ -181,5 +231,50 @@ router.delete('/my-stuff/delete/:id', async (req, res) => {
 
     res.redirect(`/users/my-stuff/`)
 })
+
+
+
+router.get('/my-stuff/:productId', async (req, res)=>{
+    let context = {}
+
+    let userId = parseInt(res.locals.user.id)
+
+    let productId = parseInt(req.params.productId)
+
+    console.log(productId)
+
+    const product = await db.product.findOne({
+        where: {
+            id: productId,
+            userId: userId
+        },
+        // include: [db.review]
+
+        // nested join
+        include: [{
+            model: db.review,
+            include: [db.user]
+        }]
+    })
+
+    const genders = db.product.getAttributes().gender.values
+    const categories = db.product.getAttributes().category.values
+
+    // console.log(genders)
+    // console.log(categories)
+
+    console.log(product.picture)
+
+
+    context.product = product
+    context.genders = genders
+    context.categories = categories
+
+
+    res.render('users/single-stuff', context)
+})
+
+
+
 
 module.exports = router

@@ -94,7 +94,7 @@ const createProducts = async () => {
     }
 }
 
-// createProducts()
+createProducts()
 
 
 

@@ -12,13 +12,13 @@
 
 }
 
-li {
+.navLi {
     float: left;
     width: 16.65%;
 
 }
 
-li a {
+.navLi a {
 
 
     display: block;
@@ -66,7 +66,7 @@ li a {
 }
 
 
-div {
+#globalHeader div {
     text-align: center;
 }
 

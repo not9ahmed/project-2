@@ -1,45 +1,58 @@
 
-<!-- Loop over the products -->
 <h1>Shop Page</h1>
-
-
-<!-- <h3>Search Products</h3>
-<form action="/shop" method="GET">
-    <input type="text" name="q" id="search">
-    <input type="submit" id="searchBtn" value="Search">
-</form> -->
 
 
 <!-- this should hold all the products -->
 <div class="container" style="display: flex; margin: 10px; border: 5px solid blue;">
 
+<!-- <div class="container"> -->
+
 <% products.forEach(product => { %>
  
 <!-- Loop over the products -->
 
-    <div style="text-align: center; display: inline-block; margin: 10px; border: 5px solid red;">
+    <!-- <div style="text-align: center; display: inline-block; margin: 10px; border: 5px solid red;">
 
 
         <div style="object-fit: cover; width: 200px; height: 250px; margin: 0 auto;">
 
-            <a href="/shop/<%= product.id %> ">
+            <a href="/shop/<%=// product.id %>">
 
-                <img src="<%= product.picture[0] %>" style="width: 200px;" alt="">
+                <img src="<%=// product.picture[0] %>" style="width: 200px;" alt="">
             </a>
         </div>
 
-        <h4><%= product.name %> </h4>
-        <h4><%= product.category %> </h4>
-        <h4><%= product.categoryDesc %> </h4>
-        <h4><%= product.size %> </h4>
-        <!-- <h4><%=// product.userId %> </h4> -->
-        <!-- <h4><%=// product.color %> </h4> -->
-        <!-- <h4><%= //product.description %> </h4> -->
-        <h4>$<%= product.price %></h4>
-        <!-- <h4><%= //product.forSale %> </h4>
-        <h4><%= //product.gender %> </h4> -->
+        <h4><%= // product.name %></h4>
+        <h4><%=// product.category %></h4>
+        <h4><%=// product.categoryDesc %></h4>
+        <h4><%=// product.size %> </h4>
+        <h4>$<%=// product.price %></h4>
 
-    </div>
+    </div> -->
+
+
+
+    <div class="card" style="width: 18rem;">
+        <a href="/shop/<%= product.id %>">
+            <img src="<%= product.picture[0] %>" class="card-img-top" alt="...">
+        </a>    
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name %></h5>
+          <h5 class="card-title">$<%= product.price %></h5>
+          <p class="card-text"><%= product.description %></p>
+        </div>
+        <!-- <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+        </ul> -->
+        <div class="card-body">
+          <a href="/shop/<%= product.id %>" class="card-link">View Product</a>
+        </div>
+      </div>
+
+
+
 
     <% }) %>
 

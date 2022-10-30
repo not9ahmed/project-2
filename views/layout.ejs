@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     
+
+
     <link rel="stylesheet" href="css/style.css">
     <title>Dripify</title>
 </head>
 <body>
 
-
+    
     <div id="globalHeader">
 
         <div id="leftEmpty"></div>
 
         <div id="logoDiv"></div>
-
 
         <div id="searchDiv">
             <div class="wrapper">
@@ -58,20 +64,20 @@
     
         <ul id="linksList">
             <% if(user){ %>
-                <li><a href="/users/profile">Profile</a></li>
-                <li><a href="/users/logout">Logout</a></li>
-                <li><a href="/users/my-stuff">My Stuff</a></li>
+                <li class="navLi"><a href="/users/profile">Profile</a></li>
+                <li class="navLi"><a href="/users/logout">Logout</a></li>
+                <li class="navLi"><a href="/users/my-stuff">My Stuff</a></li>
 
 
                 <% if (user.isAdmin) { %>                 
-                    <li><a href="/admin/">Admin Page</a></li>
-                    <li><a href="/admin/users-management">Users Page</a></li>
+                    <li class="navLi"><a href="/admin/">Admin Page</a></li>
+                    <li class="navLi"><a href="/admin/users-management">Users Page</a></li>
                 <% } %>
             <% } else { %> 
-                <li><a href="/users/new">Sign Up</a></li>
-                <li><a href="/users/login">Login</a></li>
+                <li class="navLi"><a href="/users/new">Sign Up</a></li>
+                <li class="navLi"><a href="/users/login">Login</a></li>
             <% } %>
-            <li><a href="/shop/">Shop Page</a></li>
+            <li class="navLi"><a href="/shop/">Shop Page</a></li>
         </ul>
 
     </nav>
@@ -79,7 +85,7 @@
 <!-- <img src="img/github.png" style="width: 200px;" alt=""> -->
 
 
-    <h1>Express Auth Boilerplate for Project 2</h1>
+    <!-- <h1>Dripify</h1> -->
     <%- body %> 
 </body>
 </html>
