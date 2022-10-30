@@ -3,29 +3,122 @@ const express = require('express')
 const db = require('../models')
 const router = express.Router()
 require('dotenv').config()
+const { Op } = require("sequelize");
+
 
 // this is the controller for the main shop page
+// display the products for sale only
 router.get('/', async (req, res) => {
 
 
+    let context = {}
 
-    try {
 
+    console.log(req.query.q)
+
+    // if user makes a search
+    if(typeof req.query.q !== 'undefined'){
+
+        const products = await db.product.findAll(
+            {
+                where: {
+                    [Op.or]: [
+                        {
+                            name: {
+                                [Op.like]: `%${req.query.q}%`
+                            }
+                        },
+                        {
+                            description: {
+                                [Op.like]: `%${req.query.q}%`
+                            }
+                        }
+                    ],
+                    forSale: true
+                }
+            }
+        )
+
+
+        context.products = products
+    } else {
+        // user does not make a search
         // get all the products from the database
-        const products = await db.product.findAll()
+        const products = await db.product.findAll(
+            {
+                where: {
+                    forSale: true
+                }
+            }
+        )
+        context.products = products
 
-        // console.log(products)
-
-        console.log(products[0].picture)
-
-        res.render('shop/index.ejs', {products: products})
-
-    }catch(err){
-        console.log(err)
-        res.send('ERROR!', err)
     }
 
+
+    res.render('shop/index.ejs', context)
+
+
+
 })
+
+
+
+// this is the controller for the main shop page
+// display the products just for display and not for sale
+router.get('/blog', async (req, res) => {
+
+
+    let context = {}
+
+
+    console.log(req.query.q)
+
+    // if user makes a search
+    if(typeof req.query.q !== 'undefined'){
+
+        const products = await db.product.findAll(
+            {
+                where: {
+                    [Op.or]: [
+                        {
+                            name: {
+                                [Op.like]: `%${req.query.q}%`
+                            }
+                        },
+                        {
+                            description: {
+                                [Op.like]: `%${req.query.q}%`
+                            }
+                        }
+                    ],
+                    forSale: false
+                }
+            }
+        )
+
+
+        context.products = products
+    } else {
+        // user does not make a search
+        // get all the products from the database
+        const products = await db.product.findAll(
+            {
+                where: {
+                    forSale: false
+                }
+            }
+        )
+        context.products = products
+
+    }
+
+    res.render('shop/blog.ejs', context)
+
+
+})
+
+
 
 
 
@@ -82,8 +175,6 @@ router.get('/add-product', async (req, res) => {
 router.post('/add-product', async (req, res) => {
 
 
-    console.log(req.body)
-
     let userId = parseInt(res.locals.user.id)
 
 
@@ -97,7 +188,7 @@ router.post('/add-product', async (req, res) => {
 
     console.log('filteredArrays', filteredArrays)
 
-    
+
     const product = await db.product.create({
         name: req.body.name,
         category: req.body.category,
@@ -105,14 +196,14 @@ router.post('/add-product', async (req, res) => {
         size: req.body.size,
         color: req.body.color,
         description: req.body.description,
-        price: req.body.price,
+        price: parseFloat(req.body.price),
         forSale: JSON.parse(req.body.forSale),
         gender:  req.body.gender,
-        userId: userId
+        userId: userId,
 
     
         // add the pictures
-        ,picture: filteredArrays
+        picture: filteredArrays
     })
     res.redirect('/shop')
 
@@ -123,13 +214,16 @@ router.post('/add-product', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
 
+    let context = {}
+
+    let productId = parseInt(req.params.id)
 
     try {
 
     // get all the products from the database
     const product = await db.product.findOne({
         where: {
-            id: req.params.id
+            id: productId
         },
         // include: [db.review]
 
@@ -140,12 +234,14 @@ router.get('/:id', async (req, res) => {
         }]
     })
 
-    console.log(product.reviews)
+    // console.log(product.reviews)
 
 
     // console.log(product.reviews)
 
-    res.render('shop/shop-single.ejs', {product: product})
+    context.product = product
+
+    res.render('shop/shop-single.ejs', context)
 
     }catch(err){
         console.log(err)

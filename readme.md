@@ -1,31 +1,73 @@
 # Dripify System
 
-a description of the app
+## App Description
+
+---
+## installation instructions
 
 
-installation instructions
+---
+## a link to the deployed live site
+Not Done yet!!
 
 
-a link to the deployed live site
+---
+## Approach Taken
+I did these
+
+<br>
+
+---
+## Explaination of the Technologies Used
+I did 
+
+---
+## Wireframes
+
+### Shop Page
+![ERD](/Wireframes/Shop-Page.png)
 
 
-
-the approach taken
-
-
-explanations of the technologies used
+### Single Shop Page
+![ERD](/Wireframes/Single-Shop-Page.png)
 
 
-wireframes
+### Login Page
+![ERD](/Wireframes/Login-Page.png)
 
 
-ERDs
+### Sign Up Page
+![ERD](/Wireframes/Signup-Page.png)
 
 
+### Admin Page
+![ERD](/Wireframes/Admin-Page.png)
+
+
+---
+## ERDs
+![ERD](/Diagrams/ERD.png)
+
+
+---
+## Route Table
 a RESTful routing chart of all your app's routes
 
+route | response
+------|---------
+`/` | responds with home page
+`/` | responds with home page
 
-a post-project reflection with any unsolved problems or growth areas you may have had
 
 
-any sources used
+
+
+---
+
+## Post-Project Reflection
+Scheduling anf Time management since the web app is full stack and requires more time than the previous project.
+
+<br>
+
+---
+## Sources Used

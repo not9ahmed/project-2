@@ -13,8 +13,10 @@ app.use(ejsLayouts)
 app.use(cookieParser())
 app.use(express.urlencoded({extended: false}))
 
+// Static Files
+app.use(express.static("public"));
 
-// Override html methid and use put and delete request methods
+// Override html methosd to use put and delete request methods
 app.use(methodOverride('_method'))
 
 // AUTHENTICATION MIDDLEWARE
@@ -22,7 +24,7 @@ app.use(async (req, res, next)=>{
     if(req.cookies.userId) {
         const decryptedId = cryptoJS.AES.decrypt(req.cookies.userId, process.env.SECRET)
         const decryptedIdString = decryptedId.toString(cryptoJS.enc.Utf8)
-        const user = await db.user.findByPk(decryptedIdString)
+        const user = await db.user.findByPk(parseInt(decryptedIdString))
         res.locals.user = user
     } else res.locals.user = null
     next()

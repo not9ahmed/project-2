@@ -1,0 +1,279 @@
+#categoriesNav {
+    width: 100%;
+    /* position:fixed; */
+    border: 2px solid blue;
+}
+
+#linksList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+li {
+    float: left;
+    width: 16.65%;
+
+}
+
+li a {
+
+
+    display: block;
+    /* padding: 8px; */
+    background-color: #dddddd;
+
+    text-decoration: none;
+
+
+    width: 16.65%;
+
+
+    /* Frame 2 */
+
+    /* box-sizing: border-box; */
+
+    /* Auto layout */
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    padding: 33px 104px;
+
+    /* height: 75px; */
+
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+
+
+    /* Designers */
+
+    width: 128px;
+    height: 28px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: uppercase;
+
+    color: #000000;
+
+}
+
+
+div {
+    text-align: center;
+}
+
+#globalHeader {
+    /* border: 2px solid green; */
+    width: 100%;
+    height: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr 6fr 1fr 1fr 1fr;
+    background: #D9D9D9;
+}
+
+
+#globalHeader > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#leftEmpty {
+    /* border: 2px solid salmon; */
+    /* width: 500px;
+    height: 70px; */
+}
+
+
+#logoDiv {
+    /* border: 2px solid hotpink; */
+    background-image: url('../img/github.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-size: ; */
+}
+
+
+#rightEmpty {
+    /* border: 2px solid maroon; */
+    /* width: 500px;
+    height: 65px; */
+}
+
+
+.wrapper {
+
+
+    width: 480px;
+    height: 64px;
+
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 20px;
+
+    /* display:inline-block; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#searchField, #searchBtn {
+    background-color:transparent;
+    border:0;
+}
+
+
+#searchField {
+    width: 370px;
+    font-size: 22px;
+}
+
+
+#searchBtn {
+
+
+    /* Elevated Button */
+
+    /* Auto layout */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    gap: 10px; */
+
+    /* position: absolute; */
+    width: 95px;
+    height: 48px;
+    /* left: 624px;
+    top: 24px; */
+
+    background: #000000;
+    /* 16 DP Ambient Shadow */
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+
+
+    /* Button */
+
+    /* width: 43px;
+    height: 16px; */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #FDFDFD;
+
+    cursor: pointer;
+    /* height: 64px; */
+    }
+
+
+
+.noStyle {
+    all: unset;
+}
+
+
+#loginBtn {
+
+
+    /* 
+        /* Elevated Button */
+
+    /* box-sizing: border-box; */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* padding: 12px 24px; */
+    /* gap: 10px; */
+
+    /* position: absolute; */
+    width: 102px;
+    height: 56px;
+    /* left: 1380px;
+    top: 19px; */
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+
+
+    /* Button */
+    /* 
+    width: 35px;
+    height: 16px; */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #000000;
+
+    cursor: pointer;
+
+}
+
+#signupBtn {
+
+
+    /* Elevated Button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+/* padding: 12px 24px; */
+/* gap: 10px; */
+
+/* position: absolute; */
+width: 102px;
+height: 56px;
+/* left: 1506px;
+top: 19px; */
+
+background: #000000;
+border: 1px solid #000000;
+border-radius: 5px;
+
+
+/* Button */
+
+/* width: 48px;
+height: 16px; */
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+
+color: #FDFDFD;
+
+
+/* Inside auto layout
+flex: none;
+order: 0;
+flex-grow: 0; */
+
+}

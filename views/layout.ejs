@@ -4,11 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Express Auth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <title>Dripify</title>
 </head>
 <body>
-    <nav>
-        <ul>
+
+
+    <div id="globalHeader">
+
+        <div id="leftEmpty"></div>
+
+        <div id="logoDiv"></div>
+
+
+        <div id="searchDiv">
+            <div class="wrapper">
+                <form action="/shop" method="GET">
+                    <input type="text" name="q" id="searchField">
+                    <input type="submit" id="searchBtn" value="Search">
+                </form>            
+            </div>
+        </div>
+
+        <div id="emptyDiv"></div>
+
+        <div id="loginDiv">
+            <div id="loginBtn">
+                <a href="users/login" class="noStyle">
+                    Login
+                </a>
+            </div>
+        </div>
+
+        <div id="signupDiv">
+            <div id="signupBtn">
+                <a href="users/new" class="noStyle">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+
+        <div id="rightEmpty">
+        </div>
+    </div>
+
+
+
+    <nav id="categoriesNav">
+    
+        <ul id="linksList">
             <% if(user){ %>
                 <li><a href="/users/profile">Profile</a></li>
                 <li><a href="/users/logout">Logout</a></li>
@@ -17,7 +65,7 @@
 
                 <% if (user.isAdmin) { %>                 
                     <li><a href="/admin/">Admin Page</a></li>
-                    <li><a href="/admin/users-management">Users Management Page</a></li>
+                    <li><a href="/admin/users-management">Users Page</a></li>
                 <% } %>
             <% } else { %> 
                 <li><a href="/users/new">Sign Up</a></li>
@@ -25,7 +73,12 @@
             <% } %>
             <li><a href="/shop/">Shop Page</a></li>
         </ul>
+
     </nav>
+
+<!-- <img src="img/github.png" style="width: 200px;" alt=""> -->
+
+
     <h1>Express Auth Boilerplate for Project 2</h1>
     <%- body %> 
 </body>
