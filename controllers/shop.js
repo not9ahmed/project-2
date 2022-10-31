@@ -113,7 +113,7 @@ router.get('/blog', async (req, res) => {
 
     }
 
-    res.render('shop/blog.ejs', context)
+    res.render('shop/blog', context)
 
 
 })
