@@ -120,6 +120,41 @@ router.get('/blog', async (req, res) => {
 
 
 
+router.post('/add-review', async (req, res) => {
+
+    try{
+
+        let productId = parseInt(req.body.productId)
+
+        let userId = parseInt(res.locals.user.id)
+
+
+        console.log(productId)
+
+        const review  = await db.review.create({
+
+            title: req.body.title,
+            content: req.body.content,
+            stars: req.body.stars,
+            userId: userId,
+            productId: productId
+        })
+
+        console.log(review)
+
+
+        // res.redirect('/')
+
+        res.redirect('/shop/'+productId)
+
+    } catch(err){
+        console.log(err)
+        res.send('ERROR!', err)
+    }
+})
+
+
+
 router.get('/:id', async (req, res) => {
 
     let context = {}

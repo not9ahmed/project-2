@@ -57,36 +57,36 @@ const createUsers = async () => {
 const createProducts = async () => {
 
     try {
-        const product1 = await db.product.create({
-            name: "Saint Laurent L17 Two-Tone Leather Biker Jacket",
-            category: "Outerwear",
-            categoryDesc: "Leather Jackets",
-            size: "S",
-            userId: 1,
-            color: "Black",
-            description: "Gently Used",
-            price: 2790.00,
-            forSale: true,
-            gender: 'male',
-            picture: ['https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/resize=height:335/output=quality:50/compress/RlHQieC6SNmXDZ5QhQWZ']
-        })
+        // const product1 = await db.product.create({
+        //     name: "Saint Laurent L17 Two-Tone Leather Biker Jacket",
+        //     category: "Outerwear",
+        //     categoryDesc: "Leather Jackets",
+        //     size: "S",
+        //     userId: 1,
+        //     color: "Black",
+        //     description: "Gently Used",
+        //     price: 2790.00,
+        //     forSale: true,
+        //     gender: 'male',
+        //     picture: ['https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/resize=height:335/output=quality:50/compress/RlHQieC6SNmXDZ5QhQWZ']
+        // })
 
-        console.log(product1)
+        // console.log(product1)
 
 
 
         const product2 = await db.product.create({
-            name: "Saint Laurent Suede Leather Trucker Jacket",
-            category: "Outerwear",
-            categoryDesc: "Leather Jackets",
-            size: "M",
-            userId: 1,
+            name: "Saint Laurent Wyatt 30 New Sigaro Brown Suede ",
+            category: "Footwear",
+            categoryDesc: "Boots",
+            size: "US 6",
+            userId: 2,
             color: "Brown",
-            description: "Gently Used",
+            description: "New",
             price: 2790.00,
-            forSale: true,
+            forSale: yes,
             gender: 'male',
-            picture: ['https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/resize=height:1400/output=quality:50/compress/kTHt47GETaiK3jopJNiP']
+            picture: ['https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/resize=height:1400/output=quality:50/compress/oyb2lFDZQpmc6oG0qxWQ']
         })
 
     } catch (err){

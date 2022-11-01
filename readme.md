@@ -53,11 +53,29 @@ I did
 ## Route Table
 a RESTful routing chart of all your app's routes
 
-route | response
-------|---------
-`/` | responds with home page
-`/` | responds with home page
-
+route | Method | response
+------|---------|-----
+`/` | get | responds with home page
+`/users` | get |  responds with users home page
+`/users/new` | get | responds with signup page for new users
+`/users/new` | post | responds with the user being registered then redirected to main page
+`/users/login` | get | responds with login page
+`/users/login` | post | responds with login page
+`/users/logout` | get | responds deleteing the user cookie and redirecting to main page
+`/users/profile` | get | responds with profile page
+`/users/my-stuff` | get | responds with my-stuff page
+`/users/add-review` | post | responds with adding a new review to the database and redirecteing to the same page
+`/users/my-stuff/add-product` | get | responds with Add Product Page
+`/users/my-stuff/add-product` | post | responds with adding the product to the database
+`/users/my-stuff/add-product` | put | responds with updating the product to the database
+`/users/my-stuff/delete/:id` | delete | responds with deleting the product from the database
+`/users/my-stuff/:id` | get | responds with page that displays full product details
+`/shop/` | get | responds with shop page that has all the products for sale
+`/shop/blog` | get | responds with blog page that has products that are not for sale
+`/shop/:id` | get | responds with shop page for a single product and that display the full product details
+`/admin/` | get | responds with admin main page
+`/admin/users-management` | get | responds with users-management page
+`/admin/delete-user` | delete | responds with deletion of user and redirect to `/admin/users-management` route
 
 
 
